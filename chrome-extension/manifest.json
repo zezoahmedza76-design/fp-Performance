@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "FP Performance",
+  "version": "2.3.0",
+  "description": "Breadfast Control Room – FP Performance dashboard (read-only).",
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
+  "host_permissions": [
+    "https://www.breadfast.com/*",
+    "https://*.cartocdn.com/*",
+    "https://*.arcgisonline.com/*",
+    "https://*.openstreetmap.org/*",
+    "https://*.openstreetmap.fr/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://www.breadfast.com/dashboard/*"],
+      "js": ["gm-shim.js", "script.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://www.breadfast.com/dashboard/*"],
+      "js": ["relay.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
